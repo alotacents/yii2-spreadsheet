@@ -1,5 +1,5 @@
 {
-    "name": "yii2tech/spreadsheet",
+    "name": "alotacents/yii2-spreadsheet",
     "description": "Yii2 extension for export to a spreadsheet, e.g. Excel, LibreOffice etc.",
     "keywords": ["yii2", "spreadsheet", "excel", "libreoffice", "export", "xls", "xlsx"],
     "type": "yii2-extension",
@@ -30,7 +30,7 @@
         }
     ],
     "autoload": {
-        "psr-4": { "yii2tech\\spreadsheet\\": "src" }
+        "psr-4": { "alotacents\\yii2-spreadsheet\\": "src" }
     },
     "extra": {
         "branch-alias": {
