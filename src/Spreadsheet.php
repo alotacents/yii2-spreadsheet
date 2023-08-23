@@ -5,7 +5,7 @@
  * @license [New BSD License](http://www.opensource.org/licenses/bsd-license.php)
  */
 
-namespace yii2tech\spreadsheet;
+namespace alotacents\yii2-spreadsheet;
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use yii\data\ActiveDataProvider;
@@ -24,7 +24,7 @@ use yii\web\Response;
  * Example:
  *
  * ```php
- * use yii2tech\spreadsheet\Spreadsheet;
+ * use alotacents\yii2-spreadsheet\Spreadsheet;
  * use yii\data\ActiveDataProvider;
  *
  * $exporter = new Spreadsheet([
