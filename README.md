@@ -23,13 +23,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist alotacents\yii2-spreadsheet
+php composer.phar require --prefer-dist alotacents/yii2-spreadsheet
 ```
 
 or add
 
 ```json
-"alotacents\yii2-spreadsheet": "*"
+"alotacents/yii2-spreadsheet": "*"
 ```
 
 to the require section of your composer.json.
