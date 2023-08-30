@@ -30,7 +30,7 @@
         }
     ],
     "autoload": {
-        "psr-4": { "alotacents\\yii2-spreadsheet\\": "src" }
+        "psr-4": { "alotacents\\spreadsheet\\": "src" }
     },
     "extra": {
         "branch-alias": {
