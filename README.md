@@ -40,14 +40,14 @@ Usage
 
 This extension provides ability to export data to a spreadsheet, e.g. Excel, LibreOffice etc.
 It is powered by [phpoffice/phpspreadsheet](https://github.com/PHPOffice/PhpSpreadsheet) library.
-Export is performed via `alotacents\yii2-spreadsheet\Spreadsheet` instance, which provides interface similar to `\yii\grid\GridView` widget.
+Export is performed via `alotacents\yii2\spreadsheet\Spreadsheet` instance, which provides interface similar to `\yii\grid\GridView` widget.
 
 Example:
 
 ```php
 <?php
 
-use alotacents\yii2-spreadsheet\Spreadsheet;
+use alotacents\yii2\spreadsheet\Spreadsheet;
 use yii\data\ArrayDataProvider;
 
 $exporter = new Spreadsheet([
@@ -81,15 +81,15 @@ $exporter = new Spreadsheet([
 $exporter->save('/path/to/file.xls');
 ```
 
-Please, refer to `alotacents\yii2-spreadsheet\Column` class for the information about column properties and configuration specifications.
+Please, refer to `alotacents\yii2\spreadsheet\Column` class for the information about column properties and configuration specifications.
 
-While running web application you can use `alotacents\yii2-spreadsheet\Spreadsheet::send()` method to send a result file to
+While running web application you can use `alotacents\yii2\spreadsheet\Spreadsheet::send()` method to send a result file to
 the browser through download dialog:
 
 ```php
 <?php
 
-use alotacents\yii2-spreadsheet\Spreadsheet;
+use alotacents\yii2\spreadsheet\Spreadsheet;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 
@@ -112,13 +112,13 @@ class ItemController extends Controller
 
 You can create an output file with multiple worksheets (tabs). For example: you may want to export data about
 equipment used in the office, keeping monitors, mouses, keyboards and so on in separated listings but in the same file.
-To do so you will need to manually call `alotacents\yii2-spreadsheet\Spreadsheet::render()` method with different configuration
+To do so you will need to manually call `alotacents\yii2\spreadsheet\Spreadsheet::render()` method with different configuration
 before creating final file. For example:
 
 ```php
 <?php
 
-use alotacents\yii2-spreadsheet\Spreadsheet;
+use alotacents\yii2\spreadsheet\Spreadsheet;
 use yii\data\ActiveDataProvider;
 use app\models\Equipment;
 
@@ -156,13 +156,13 @@ $exporter->save('/path/to/file.xls');
 
 As the result you will get a single *.xls file with 3 worksheets (tabs): 'Monitors', 'Mouses' and 'Keyboards'.
 
-Using `alotacents\yii2-spreadsheet\Spreadsheet::configure()` you can reset any spreadsheet parameter, including `columns`.
+Using `alotacents\yii2\spreadsheet\Spreadsheet::configure()` you can reset any spreadsheet parameter, including `columns`.
 Thus you are able to combine several entirely different sheets into a single file.
 
 
 ### Large data processing <span id="large-data-processing"></span>
 
-`alotacents\yii2-spreadsheet\Spreadsheet` allows exporting of the `\yii\data\DataProviderInterface` and `\yii\db\QueryInterface` instances.
+`alotacents\yii2\spreadsheet\Spreadsheet` allows exporting of the `\yii\data\DataProviderInterface` and `\yii\db\QueryInterface` instances.
 Export is performed via batches, which allows processing of the large data without memory overflow.
 
 In case of `\yii\data\DataProviderInterface` usage, data will be split to batches using pagination mechanism.
@@ -171,7 +171,7 @@ Thus you should setup pagination with page size in order to control batch size:
 ```php
 <?php
 
-use alotacents\yii2-spreadsheet\Spreadsheet;
+use alotacents\yii2\spreadsheet\Spreadsheet;
 use yii\data\ActiveDataProvider;
 
 $exporter = new Spreadsheet([
@@ -190,12 +190,12 @@ $exporter->save('/path/to/file.xls');
 In case of `\yii\db\QueryInterface` usage, `Spreadsheet` will attempt to use `batch()` method, if it is present in the query
 class (for example in case `\yii\db\Query` or `\yii\db\ActiveQuery` usage). If `batch()` method is not available -
 `yii\data\ActiveDataProvider` instance will be automatically created around given query.
-You can control batch size via `alotacents\yii2-spreadsheet\Spreadsheet::$batchSize`:
+You can control batch size via `alotacents\yii2\spreadsheet\Spreadsheet::$batchSize`:
 
 ```php
 <?php
 
-use alotacents\yii2-spreadsheet\Spreadsheet;
+use alotacents\yii2\spreadsheet\Spreadsheet;
 use yii\data\ActiveDataProvider;
 
 $exporter = new Spreadsheet([
@@ -217,7 +217,7 @@ $exporter->save('/path/to/file.xls');
 You may union some columns in the sheet header into a groups. For example: you may have 2 different data columns:
 'Planned Revenue' and 'Actual Revenue'. In this case you may want to display them as a single column 'Revenue', split
 into 2 sub columns: 'Planned' and 'Actual'.
-This can be achieved using `alotacents\yii2-spreadsheet\Spreadsheet::$headerColumnUnions`. Its each entry
+This can be achieved using `alotacents\yii2\spreadsheet\Spreadsheet::$headerColumnUnions`. Its each entry
 should specify 'offset', which determines the amount of columns to be skipped, and 'length', which determines
 the amount of columns to be united. Other options of the union are the same as for regular column.
 For example:
@@ -225,7 +225,7 @@ For example:
 ```php
 <?php
 
-use alotacents\yii2-spreadsheet\Spreadsheet;
+use alotacents\yii2\spreadsheet\Spreadsheet;
 use yii\data\ArrayDataProvider;
 
 $exporter = new Spreadsheet([
@@ -276,18 +276,18 @@ $exporter->save('/path/to/file.xls');
 Before `save()` or `send()` method is invoked, you are able to edit generated spreadsheet, making some
 final adjustments to it. Several methods exist to facilitate this process:
 
- - `alotacents\yii2-spreadsheet\Spreadsheet::renderCell()` - renders specified cell with given content and style.
- - `alotacents\yii2-spreadsheet\Spreadsheet::applyCellStyle()` - applies specified style to the cell.
- - `alotacents\yii2-spreadsheet\Spreadsheet::mergeCells()` - merges sell range into single one.
+ - `alotacents\yii2\spreadsheet\Spreadsheet::renderCell()` - renders specified cell with given content and style.
+ - `alotacents\yii2\spreadsheet\Spreadsheet::applyCellStyle()` - applies specified style to the cell.
+ - `alotacents\yii2\spreadsheet\Spreadsheet::mergeCells()` - merges sell range into single one.
 
-You may use these methods, after document has been composed via `alotacents\yii2-spreadsheet\Spreadsheet::render()`,
+You may use these methods, after document has been composed via `alotacents\yii2\spreadsheet\Spreadsheet::render()`,
 to override or add some content. For example:
 
 ```php
 <?php
 
-use alotacents\yii2-spreadsheet\Spreadsheet;
-use alotacents\yii2-spreadsheet\SerialColumn;
+use alotacents\yii2\spreadsheet\Spreadsheet;
+use alotacents\yii2\spreadsheet\SerialColumn;
 use yii\data\ArrayDataProvider;
 
 $exporter = new Spreadsheet([
@@ -334,5 +334,5 @@ $exporter->mergeCells('A4:B4');
 $exporter->save('/path/to/file.xls');
 ```
 
-> Tip: you can use `alotacents\yii2-spreadsheet\Spreadsheet::$rowIndex` to get number of the row, which is next
+> Tip: you can use `alotacents\yii2\spreadsheet\Spreadsheet::$rowIndex` to get number of the row, which is next
   to the last rendered one.
