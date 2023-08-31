@@ -24,7 +24,7 @@ use yii\web\Response;
  * Example:
  *
  * ```php
- * use alotacents\yii2-spreadsheet\Spreadsheet;
+ * use alotacents\yii2\spreadsheet\Spreadsheet;
  * use yii\data\ActiveDataProvider;
  *
  * $exporter = new Spreadsheet([
